@@ -10,7 +10,7 @@ public record StudentDto(
         Long id,
 
         @NotBlank(message = "student first name cannot be blank")
-        String name,
+        String firstName,
 
         @NotBlank(message = "student last name cannot be blank")
         String lastName
