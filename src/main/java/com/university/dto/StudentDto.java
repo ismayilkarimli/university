@@ -14,5 +14,4 @@ public record StudentDto(
 
         @NotBlank(message = "student last name cannot be blank")
         String lastName
-) {
-}
+) { }

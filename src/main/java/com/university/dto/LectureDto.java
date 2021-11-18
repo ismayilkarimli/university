@@ -1,5 +1,6 @@
 package com.university.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.NotBlank;
@@ -18,8 +19,10 @@ public record LectureDto(
         DayOfWeek dayOfWeek,
 
         @NotBlank(message = "course start time cannot be blank")
+        @JsonFormat(pattern = "HH:mm")
         LocalTime startTime,
 
         @NotBlank(message = "course end time cannot be blank")
+        @JsonFormat(pattern = "HH:mm")
         LocalTime endTime
-) {}
+) { }
