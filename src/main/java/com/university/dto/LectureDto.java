@@ -1,7 +1,9 @@
 package com.university.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.university.model.Student;
 
@@ -27,6 +29,7 @@ public record LectureDto(
 
         @NotBlank(message = "course start time cannot be blank")
         @JsonProperty(required = true)
+        @JsonFormat(pattern = "HH:mm")
         LocalTime startTime,
 
         @NotBlank(message = "course end time cannot be blank")
