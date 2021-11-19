@@ -5,6 +5,7 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -15,7 +16,7 @@ import java.util.Objects;
 public class Student {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     @Setter(AccessLevel.NONE)
     private Long id;
@@ -25,6 +26,13 @@ public class Student {
 
     @Column(nullable = false)
     private String lastName;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "registration",
+    joinColumns = @JoinColumn(name = "student_id", nullable = false),
+    inverseJoinColumns = @JoinColumn(name = "lecture_id", nullable = false))
+    @ToString.Exclude
+    private Set<Lecture> lectures;
 
     @Override
     public boolean equals(Object o) {
