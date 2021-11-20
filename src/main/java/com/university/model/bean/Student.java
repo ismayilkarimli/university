@@ -36,13 +36,15 @@ public class Student {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
+
         Student student = (Student) o;
-        return id != null ? id.equals(student.id) : student.id == null;
+
+        return id.equals(student.id);
     }
 
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        return id.hashCode();
     }
 }

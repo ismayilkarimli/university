@@ -45,13 +45,15 @@ public class Lecture {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
+
         Lecture lecture = (Lecture) o;
-        return id != null ? id.equals(lecture.id) : lecture.id == null;
+
+        return id.equals(lecture.id);
     }
 
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        return id.hashCode();
     }
 }
