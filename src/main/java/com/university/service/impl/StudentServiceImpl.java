@@ -10,10 +10,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.DayOfWeek;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -42,6 +44,16 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public StudentDto getStudent(Long id) {
         var student = studentRepository.findById(id).orElseThrow();
+        return StudentMapper.INSTANCE.studentToDto(student);
+    }
+
+    @Override
+    public StudentDto getDailySchedule(Long id, String day) {
+        var student = studentRepository.findById(id).orElseThrow(() -> new RuntimeException("no such student"));
+        var lectures = student.getLectures().stream()
+                .filter(lecture -> lecture.getDayOfWeek().toString().equals(day.toUpperCase()))
+                .collect(Collectors.toSet());
+        student.setLectures(lectures);
         return StudentMapper.INSTANCE.studentToDto(student);
     }
 

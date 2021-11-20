@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.DayOfWeek;
 import java.util.Map;
 
 @RestController
@@ -28,6 +29,13 @@ public class StudentControllerImpl implements StudentController {
     @GetMapping("/{id}")
     public ResponseEntity<StudentDto> getStudent(@PathVariable Long id) {
         var student = studentService.getStudent(id);
+        return ResponseEntity.status(HttpStatus.OK).body(student);
+    }
+
+    @Override
+    @GetMapping("/{id}/{day}")
+    public ResponseEntity<StudentDto> getDailySchedule(@PathVariable Long id, @PathVariable String day) {
+        var student = studentService.getDailySchedule(id, day);
         return ResponseEntity.status(HttpStatus.OK).body(student);
     }
 
