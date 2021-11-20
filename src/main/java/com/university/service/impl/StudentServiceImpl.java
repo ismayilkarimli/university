@@ -1,6 +1,7 @@
 package com.university.service.impl;
 
 import com.university.dto.StudentDto;
+import com.university.exception.IllegalIdException;
 import com.university.mapper.StudentMapper;
 import com.university.repository.LectureRepository;
 import com.university.repository.StudentRepository;
@@ -28,7 +29,7 @@ public class StudentServiceImpl implements StudentService {
         if (dto.registeredLectureIds() != null) {
             var lectures = lectureRepository.findAllById(dto.registeredLectureIds());
             if (dto.registeredLectureIds().size() != lectures.size()) {
-                throw new RuntimeException("Some lecture ids don't exist");
+                throw new IllegalIdException("Some lecture ids don't exist");
             }
             lectures.forEach(lecture -> lecture.getStudents().add(student));
             student.setLectures(Set.copyOf(lectures));
@@ -53,7 +54,7 @@ public class StudentServiceImpl implements StudentService {
         if (dto.registeredLectureIds() != null) {
             var updatedRegisteredLectures = lectureRepository.findAllById(dto.registeredLectureIds());
             if (dto.registeredLectureIds().size() != updatedRegisteredLectures.size()) {
-                throw new RuntimeException("Some lecture ids don't exist");
+                throw new IllegalIdException("Some lecture ids don't exist");
             }
             var lectures = lectureRepository.findAll();
             lectures.forEach(lecture -> lecture.getStudents().remove(student));
