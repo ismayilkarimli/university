@@ -1,6 +1,6 @@
 package com.university.service.impl;
 
-import com.university.dto.StudentDto;
+import com.university.model.dto.StudentDto;
 import com.university.exception.IllegalIdException;
 import com.university.mapper.StudentMapper;
 import com.university.repository.LectureRepository;

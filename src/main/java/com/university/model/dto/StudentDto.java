@@ -1,13 +1,12 @@
-package com.university.dto;
+package com.university.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.university.model.Lecture;
+import com.university.model.bean.Lecture;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
-import java.util.Set;
 
 public record StudentDto(
 

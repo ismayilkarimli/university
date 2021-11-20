@@ -1,10 +1,8 @@
 package com.university.controller;
 
-import com.university.dto.LectureDto;
-import com.university.model.Lecture;
+import com.university.model.dto.LectureDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.Map;
 

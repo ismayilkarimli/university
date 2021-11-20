@@ -1,18 +1,17 @@
-package com.university.dto;
+package com.university.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.university.model.Student;
+import com.university.model.bean.Student;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.List;
-import java.util.Set;
 
 public record LectureDto(
 

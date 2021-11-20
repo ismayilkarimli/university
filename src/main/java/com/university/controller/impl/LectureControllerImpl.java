@@ -1,7 +1,7 @@
 package com.university.controller.impl;
 
 import com.university.controller.LectureController;
-import com.university.dto.LectureDto;
+import com.university.model.dto.LectureDto;
 import com.university.service.LectureService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

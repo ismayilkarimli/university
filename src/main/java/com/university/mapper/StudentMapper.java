@@ -1,7 +1,7 @@
 package com.university.mapper;
 
-import com.university.dto.StudentDto;
-import com.university.model.Student;
+import com.university.model.dto.StudentDto;
+import com.university.model.bean.Student;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;

@@ -1,4 +1,4 @@
-package com.university.model;
+package com.university.model.bean;
 
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -7,7 +7,6 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.time.DayOfWeek;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Set;
 

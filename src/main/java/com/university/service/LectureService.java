@@ -1,8 +1,6 @@
 package com.university.service;
 
-import com.university.dto.LectureDto;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import com.university.model.dto.LectureDto;
 
 import java.util.Map;
 

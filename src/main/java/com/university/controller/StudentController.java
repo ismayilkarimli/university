@@ -1,6 +1,6 @@
 package com.university.controller;
 
-import com.university.dto.StudentDto;
+import com.university.model.dto.StudentDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 

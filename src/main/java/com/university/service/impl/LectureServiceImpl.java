@@ -1,9 +1,9 @@
 package com.university.service.impl;
 
-import com.university.dto.LectureDto;
+import com.university.model.dto.LectureDto;
 import com.university.exception.IllegalIdException;
 import com.university.mapper.LectureMapper;
-import com.university.model.Student;
+import com.university.model.bean.Student;
 import com.university.repository.LectureRepository;
 import com.university.repository.StudentRepository;
 import com.university.service.LectureService;

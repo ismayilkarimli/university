@@ -1,6 +1,6 @@
 package com.university.controller.exceptionhandler;
 
-import com.university.error.ApiError;
+import com.university.model.error.ApiError;
 import com.university.exception.IllegalIdException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

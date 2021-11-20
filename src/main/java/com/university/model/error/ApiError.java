@@ -1,4 +1,4 @@
-package com.university.error;
+package com.university.model.error;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

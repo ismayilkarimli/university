@@ -1,7 +1,7 @@
 package com.university.controller.impl;
 
 import com.university.controller.StudentController;
-import com.university.dto.StudentDto;
+import com.university.model.dto.StudentDto;
 import com.university.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

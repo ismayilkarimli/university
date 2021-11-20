@@ -1,10 +1,9 @@
-package com.university.model;
+package com.university.model.bean;
 
 import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
