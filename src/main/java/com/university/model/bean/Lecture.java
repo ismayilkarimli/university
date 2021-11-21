@@ -1,7 +1,6 @@
 package com.university.model.bean;
 
 import lombok.*;
-import org.hibernate.Hibernate;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -41,6 +40,16 @@ public class Lecture {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @ToString.Exclude
     private Set<Student> students;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "instructor_id", nullable = false)
+    @ToString.Exclude
+    private Instructor instructor;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "classroom_id", nullable = false)
+    @ToString.Exclude
+    private Classroom classroom;
 
     @Override
     public boolean equals(Object o) {
