@@ -9,6 +9,7 @@ import com.university.model.bean.Student;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.List;
@@ -41,5 +42,5 @@ public record LectureDto(
         List<Student> registeredStudents,
 
         @JsonProperty(value = "studentIds", access = JsonProperty.Access.WRITE_ONLY)
-        List<@Min(value = 1, message = "student id must be a positive value") Long> registeredStudentIds
+        List<@Positive(message = "student id must be a positive value") Long> registeredStudentIds
 ) { }

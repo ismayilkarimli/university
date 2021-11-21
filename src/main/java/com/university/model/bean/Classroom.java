@@ -1,7 +1,6 @@
 package com.university.model.bean;
 
 import lombok.*;
-import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -10,26 +9,23 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
 @NoArgsConstructor
-public class Student {
+@AllArgsConstructor
+public class Classroom {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     @Setter(AccessLevel.NONE)
     private Long id;
 
-    @Column(nullable = false)
-    private String firstName;
+    private Integer roomNumber;
 
-    @Column(nullable = false)
-    private String lastName;
+    private Integer floor;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "registration",
-    joinColumns = @JoinColumn(name = "student_id", nullable = false),
-    inverseJoinColumns = @JoinColumn(name = "lecture_id", nullable = false))
+    private Integer capacity;
+
+    @OneToMany(mappedBy = "classroom", fetch = FetchType.LAZY)
     @ToString.Exclude
     private Set<Lecture> lectures;
 
@@ -38,9 +34,9 @@ public class Student {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Student student = (Student) o;
+        Classroom classroom = (Classroom) o;
 
-        return id.equals(student.id);
+        return id.equals(classroom.id);
     }
 
     @Override

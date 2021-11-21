@@ -6,6 +6,7 @@ import com.university.model.bean.Lecture;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 import java.util.List;
 
 public record StudentDto(
@@ -26,5 +27,5 @@ public record StudentDto(
         List<Lecture> registeredLectures,
 
         @JsonProperty(value = "lectureIds", access = JsonProperty.Access.WRITE_ONLY)
-        List<@Min(value = 1, message = "lecture id must be a positive value") Long> registeredLectureIds
+        List<@Positive(message = "lecture id must be a positive value") Long> registeredLectureIds
 ) { }
