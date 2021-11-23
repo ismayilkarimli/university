@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.DayOfWeek;
 import java.util.Map;
 
@@ -20,7 +21,7 @@ public class StudentControllerImpl implements StudentController {
 
     @Override
     @PostMapping("")
-    public ResponseEntity<Map<String, Long>> createStudent(@RequestBody StudentDto dto) {
+    public ResponseEntity<Map<String, Long>> createStudent(@Valid @RequestBody StudentDto dto) {
         var id = studentService.createStudent(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(id);
     }
@@ -41,7 +42,7 @@ public class StudentControllerImpl implements StudentController {
 
     @Override
     @PutMapping("/{id}")
-    public ResponseEntity<StudentDto> updateStudent(@PathVariable Long id, @RequestBody StudentDto dto) {
+    public ResponseEntity<StudentDto> updateStudent(@PathVariable Long id, @Valid @RequestBody StudentDto dto) {
         var updatedStudent = studentService.updateStudent(id, dto);
         return ResponseEntity.status(HttpStatus.OK).body(updatedStudent);
     }

@@ -1,5 +1,7 @@
 package com.university.model.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,10 +13,12 @@ import java.util.Set;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Instructor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
     private Long id;
 
     private String firstName;
@@ -22,6 +26,7 @@ public class Instructor {
     private String lastName;
 
     @OneToMany(mappedBy = "instructor", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"instructor"})
     @ToString.Exclude
     private Set<Lecture> lectures;
 
@@ -32,11 +37,12 @@ public class Instructor {
 
         Instructor that = (Instructor) o;
 
-        return id.equals(that.id);
+        return id != null ? id.equals(that.id) : that.id == null;
     }
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return id != null ? id.hashCode() : 0;
     }
+
 }

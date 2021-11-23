@@ -1,5 +1,7 @@
 package com.university.model.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,6 +13,7 @@ import java.util.Set;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Classroom {
 
     @Id
@@ -26,6 +29,7 @@ public class Classroom {
     private Integer capacity;
 
     @OneToMany(mappedBy = "classroom", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"classroom"})
     @ToString.Exclude
     private Set<Lecture> lectures;
 
@@ -36,11 +40,12 @@ public class Classroom {
 
         Classroom classroom = (Classroom) o;
 
-        return id.equals(classroom.id);
+        return id != null ? id.equals(classroom.id) : classroom.id == null;
     }
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return id != null ? id.hashCode() : 0;
     }
+
 }
