@@ -1,6 +1,7 @@
 package com.university.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.university.model.bean.Lecture;
 
@@ -9,6 +10,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 import java.util.List;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public record StudentDto(
 
         @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

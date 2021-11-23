@@ -1,5 +1,7 @@
 package com.university.model.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -15,6 +17,7 @@ import java.util.Set;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Lecture {
 
     @Id
@@ -38,16 +41,25 @@ public class Lecture {
 
     @ManyToMany(mappedBy = "lectures", fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnoreProperties({"lectures"})
     @ToString.Exclude
     private Set<Student> students;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "instructor_id", nullable = false)
+    @ManyToOne
+    @JoinTable(name = "LECTURE_INSTRUCTOR",
+    joinColumns = @JoinColumn(name = "lecture_id", nullable = false),
+    inverseJoinColumns = @JoinColumn(name = "instructor_id", nullable = false))
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnoreProperties({"lectures"})
     @ToString.Exclude
     private Instructor instructor;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "classroom_id", nullable = false)
+    @ManyToOne
+    @JoinTable(name = "LECTURE_CLASSROOM",
+    joinColumns = @JoinColumn(name = "lecture_id", nullable = false),
+    inverseJoinColumns = @JoinColumn(name = "classroom_id", nullable = false))
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnoreProperties({"lectures"})
     @ToString.Exclude
     private Classroom classroom;
 
@@ -58,11 +70,12 @@ public class Lecture {
 
         Lecture lecture = (Lecture) o;
 
-        return id.equals(lecture.id);
+        return id != null ? id.equals(lecture.id) : lecture.id == null;
     }
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return id != null ? id.hashCode() : 0;
     }
+
 }

@@ -2,12 +2,13 @@ package com.university.controller.impl;
 
 import com.university.controller.InstructorController;
 import com.university.model.dto.InstructorDto;
+import com.university.service.InstructorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Map;
 
 @RestController
@@ -15,24 +16,34 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class InstructorControllerImpl implements InstructorController {
 
+    private final InstructorService instructorService;
+
     @Override
-    public ResponseEntity<Map<String, Long>> createInstructor(InstructorDto dto) {
-        return null;
+    @PostMapping("")
+    public ResponseEntity<Map<String, Long>> createInstructor(@Valid @RequestBody InstructorDto dto) {
+        var id = instructorService.createInstructor(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(id);
     }
 
     @Override
-    public ResponseEntity<InstructorDto> getInstructor(Long id) {
-        return null;
+    @GetMapping("/{id}")
+    public ResponseEntity<InstructorDto> getInstructor(@PathVariable Long id) {
+        var instructor = instructorService.getInstructor(id);
+        return ResponseEntity.status(HttpStatus.OK).body(instructor);
     }
 
     @Override
-    public ResponseEntity<InstructorDto> updateInstructor(Long id, InstructorDto dto) {
-        return null;
+    @PutMapping("/{id}")
+    public ResponseEntity<InstructorDto> updateInstructor(@PathVariable Long id, @Valid @RequestBody InstructorDto dto) {
+        var updatedInstructor = instructorService.updateInstructor(id, dto);
+        return ResponseEntity.status(HttpStatus.OK).body(updatedInstructor);
     }
 
     @Override
-    public ResponseEntity<HttpStatus> deleteInstructor(Long id) {
-        return null;
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HttpStatus> deleteInstructor(@PathVariable Long id) {
+        instructorService.deleteInstructor(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
 }

@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Map;
 
 @RestController
@@ -19,7 +20,7 @@ public class LectureControllerImpl implements LectureController {
 
     @Override
     @PostMapping("")
-    public ResponseEntity<Map<String, Long>> createLecture(@RequestBody LectureDto dto) {
+    public ResponseEntity<Map<String, Long>> createLecture(@Valid @RequestBody LectureDto dto) {
         var id = lectureService.createLecture(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(id);
     }
@@ -33,7 +34,7 @@ public class LectureControllerImpl implements LectureController {
 
     @Override
     @PutMapping("/{id}")
-    public ResponseEntity<LectureDto> updateLecture(@PathVariable Long id, @RequestBody LectureDto dto) {
+    public ResponseEntity<LectureDto> updateLecture(@PathVariable Long id, @Valid @RequestBody LectureDto dto) {
         var updatedLecture = lectureService.updateLecture(id, dto);
         return ResponseEntity.status(HttpStatus.OK).body(updatedLecture);
     }

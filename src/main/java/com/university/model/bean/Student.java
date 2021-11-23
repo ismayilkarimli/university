@@ -1,5 +1,7 @@
 package com.university.model.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -12,6 +14,7 @@ import java.util.Set;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Student {
 
     @Id
@@ -30,6 +33,7 @@ public class Student {
     @JoinTable(name = "registration",
     joinColumns = @JoinColumn(name = "student_id", nullable = false),
     inverseJoinColumns = @JoinColumn(name = "lecture_id", nullable = false))
+    @JsonIgnoreProperties({"students"})
     @ToString.Exclude
     private Set<Lecture> lectures;
 
@@ -40,11 +44,11 @@ public class Student {
 
         Student student = (Student) o;
 
-        return id.equals(student.id);
+        return id != null ? id.equals(student.id) : student.id == null;
     }
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return id != null ? id.hashCode() : 0;
     }
 }
