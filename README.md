@@ -21,7 +21,7 @@ git clone https://github.com/ismayilkarimli/university
 
 Run:
 ```bash
-docker-compose up -d
+docker-compose up -d # wait around 40 seconds for the application to start before sending a request
 ```
 ### Notes
 For postgres username is ```postgres``` and password is ```password```. Modify them in ```docker-compose.yml``` if the credentials are different in your case.
